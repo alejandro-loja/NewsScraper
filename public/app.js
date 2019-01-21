@@ -117,31 +117,30 @@ $(document).on("click", "#clearnote", function () {
 $(document).on("click", "#scrape", function () {
   // Now make an ajax call to scrape
   console.log('Clicked');
-  location.reload();
 
   // var nowScrape = function () {
-  // $.ajax({
-  //   method: "GET",
-  //   url: "/scrape"
-  // })
-  //   // With that done, add the note information to the page
-  //   .then(function (newData) {
+  $.ajax({
+    method: "GET",
+    url: "/scrape"
+  })
+    // With that done, add the note information to the page
+    .then(function (newData) {
+      location.reload();
+      // $.getJSON("/articles", function (data) {
+      //   console.log(newsObj.length, data.length);
+      //   // if any new articles are added then the page reloads
+      //   if (newsObj.length < 1) {
 
-  //     $.getJSON("/articles", function (data) {
-  //       console.log(newsObj.length, data.length);
-  //       // if any new articles are added then the page reloads
-  //       if (newsObj.length < 1) {
-
-  //         location.reload();
-  //       }
-  //       else if (newsObj.length < data.length) {
-  //         location.reload();
-  //       }
-  //       else {
-  //         console.log('no added articles')
-  //       }
-  //       // location.reload();
-  //     })
-  //   })
+      //     location.reload();
+      //   }
+      //   else if (newsObj.length < data.length) {
+      //     location.reload();
+      //   }
+      //   else {
+      //     console.log('no added articles')
+      //   }
+      //   // location.reload();
+      // })
+    })
 
 });
