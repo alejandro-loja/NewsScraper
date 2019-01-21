@@ -3,13 +3,20 @@ var newsObj;
 $.getJSON("/articles", function (data) {
   // For each one
   newsObj = data;
+
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    var eachNews = data[i]
-  //  var eachArticle = $('#articles').append('<div class="each-article alert alert-warning alert-dismissible fade show" role="alert" data-id=' + eachNews._id + '><a class="alert-link" href="' + eachNews.link + '">' + eachNews.title + '</a><br />' + eachNews.desc + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-   var eachArticle = $('#articles').append('<div class="each-article alert alert-warning alert-dismissible fade show" role="alert" data-id=' + eachNews._id + '><a class="alert-link" href="' + eachNews.link + '">' + eachNews.title + '</a><br />' + eachNews.desc + '</div>');
-   // '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+    var eachNews = data[i];
+    //  var eachArticle = $('#articles').append('<div class="each-article alert alert-warning alert-dismissible fade show" role="alert" data-id=' + eachNews._id + '><a class="alert-link" href="' + eachNews.link + '">' + eachNews.title + '</a><br />' + eachNews.desc + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+    var eachArticle = $('#articles').append('<div class="each-article alert alert-warning alert-dismissible fade show" role="alert" data-id=' + eachNews._id + '><a class="alert-link" href="' + eachNews.link + '">' + eachNews.title + '</a><br />' + eachNews.desc + '</div>');
+    // '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
   }
+  if (data.length < 1) {
+    $('#articles').text("Let's Scape some articles!")
+  }
+
+  var howManyArticles = $('#articles > div').length;
+  $('#number-articles').text(howManyArticles)
 });
 
 // Whenever someone clicks a p tag
@@ -36,7 +43,7 @@ $(document).on("click", ".each-article", function () {
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append("<button class='btn btn-warning' data-id='" + data._id + "' id='savenote'>Save Note</button>");
       // A add button to delete comment
-      $("#notes").append('</br><button class="btn btn-light" type="button">Clear Comment</button>');
+      // $("#notes").append('</br><button class="btn btn-light" type="button">Clear Comment</button>');
 
 
       // If there's a note in the article
@@ -80,19 +87,27 @@ $(document).on("click", "#savenote", function () {
 
 $(document).on("click", "#scrape", function () {
   // Now make an ajax call to scrape
-  // console.log(newsObj);
+  console.log('Clicked');
+
   // var nowScrape = function () {
-  // $.ajax({
-  //   method: "GET",
-  //   url: "/scrape"
-  // })
-  //   // With that done, add the note information to the page
-  //   .then(function (data) {
-  //     if (newsObj === data) {
+  $.ajax({
+    method: "GET",
+    url: "/scrape"
+  })
+    // With that done, add the note information to the page
+    .then(function (newData) {
 
-  //     }
-  //   })
-  // };
+      $.getJSON("/articles", function (data) {
+        console.log(newsObj.length, data.length);
+        // if any new articles are added then the page reloads
+        if (newsObj.length < data.length) {
+          location.reload();
+        }
+        else{
+          console.log('no added articles')
+        }
+        // location.reload();
+      })
+    })
 
-  
 });
