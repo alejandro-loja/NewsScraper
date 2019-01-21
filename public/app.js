@@ -81,18 +81,18 @@ $(document).on("click", "#savenote", function () {
 $(document).on("click", "#scrape", function () {
   // Now make an ajax call to scrape
   // console.log(newsObj);
-  var nowScrape = function () {
-  $.ajax({
-    method: "GET",
-    url: "/scrape"
-  })
-    // With that done, add the note information to the page
-    .then(function (data) {
-      if (newsObj === data) {
-        
-      }
-    })
-  };
+  // var nowScrape = function () {
+  // $.ajax({
+  //   method: "GET",
+  //   url: "/scrape"
+  // })
+  //   // With that done, add the note information to the page
+  //   .then(function (data) {
+  //     if (newsObj === data) {
+
+  //     }
+  //   })
+  // };
 
   
 });
