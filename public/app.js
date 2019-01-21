@@ -122,9 +122,9 @@ $(document).on("click", "#scrape", function () {
   $.ajax({
     method: "GET",
     url: "/scrape"
-  })
-    // With that done, add the note information to the page
-    .then(function (newData) {
+  }).then(function (data) {
+    console.log(data)
+      console.log('.then location.reload')
       location.reload();
       // $.getJSON("/articles", function (data) {
       //   console.log(newsObj.length, data.length);
@@ -141,6 +141,6 @@ $(document).on("click", "#scrape", function () {
       //   }
       //   // location.reload();
       // })
-    })
+    });
 
 });

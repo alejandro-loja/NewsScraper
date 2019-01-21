@@ -10,7 +10,7 @@ var cheerio = require("cheerio");
 // Require all models
 var db = require("./models");
 
-var PORT = process.e3000;
+var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
@@ -65,8 +65,8 @@ app.get("/scrape", function (req, res) {
 
       db.Article.findOne({ title: title }, function (err, finding) {
         if (err) return handleError(err);
-        console.log(`Hello ${finding}`);
         if (!finding) {
+          console.log('ADDING')
           // console.log('\n not found\n');
           addToMongoDb();
         }
@@ -77,7 +77,7 @@ app.get("/scrape", function (req, res) {
           db.Article.create(result)
             .then(function (dbArticle) {
               // View the added result in the console
-              // console.log(dbArticle);
+              console.log(dbArticle);
             })
             .catch(function (err) {
               // If an error occurred, log it
@@ -86,9 +86,8 @@ app.get("/scrape", function (req, res) {
         }
       };
     });
-
     // Send a message to the client
-    // res.send("Scrape Complete");
+    res.send("Scrape Complete");
   });
 });
 
