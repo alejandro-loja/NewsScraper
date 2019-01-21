@@ -128,7 +128,10 @@ $(document).on("click", "#scrape", function () {
       $.getJSON("/articles", function (data) {
         console.log(newsObj.length, data.length);
         // if any new articles are added then the page reloads
-        if (newsObj.length < data.length) {
+        if (newsObj.length === 0) {
+          location.reload();
+        }
+        else if (newsObj.length < data.length) {
           location.reload();
         }
         else{
