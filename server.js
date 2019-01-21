@@ -25,6 +25,15 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
+//express handlebars
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+app.get('/', function (req, res) {
+  res.render('index');
+});
+
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });

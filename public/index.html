@@ -20,16 +20,22 @@
   <!-- Title -->
   <div id="wrapper">
     <div class="text-center">
-      <h1 class="border p-3 m-3"><span class="text-danger font-weight-bold">CNET</span> News Special Report Scrapper</h1>
+      <h1 class="p-2 m-2"><span class="text-danger font-weight-bold">CNET</span> News Special Report Scrapper</h1>
     </div>
+   <!-- Scrape Button  -->
+  <div class="text-center">
+    <button id="scrape" type="button" class="btn btn-secondary">Check for News</button>
+  </div>  
   <!-- Container w/ articles + notes -->
     <div class="m-4">
-      <div class="row border">
-        <div id="articles" class="col-8"></div>
-        <div id="notes" class="col-4 text-center border form-group p-4"></div>
+      <div class="row">
+        <div id="articles" class="col-8 pt-4"></div>
+        <div id="notes" class="col-4 text-center border-left form-group p-4"></div>
       </div>
     </div>
-
+    <footer class="text-right container">
+      <button class="badge badge-light">Clear Database</button>
+    </footer>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="app.js"></script>

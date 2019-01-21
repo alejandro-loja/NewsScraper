@@ -1,6 +1,8 @@
+var newsObj;
 // Grab the articles as a json
 $.getJSON("/articles", function (data) {
   // For each one
+  newsObj = data;
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
     var eachNews = data[i]
@@ -9,7 +11,6 @@ $.getJSON("/articles", function (data) {
    // '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
   }
 });
-
 
 // Whenever someone clicks a p tag
 $(document).on("click", ".each-article", function () {
@@ -75,4 +76,23 @@ $(document).on("click", "#savenote", function () {
   // Also, remove the values entered in the input and textarea for note entry
   $("#titleinput").val("");
   $("#bodyinput").val("");
+});
+
+$(document).on("click", "#scrape", function () {
+  // Now make an ajax call to scrape
+  // console.log(newsObj);
+  var nowScrape = function () {
+  $.ajax({
+    method: "GET",
+    url: "/scrape"
+  })
+    // With that done, add the note information to the page
+    .then(function (data) {
+      if (newsObj === data) {
+        
+      }
+    })
+  };
+
+  
 });
